@@ -1,25 +1,51 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
 
 Window {
-    width: 640
-    height: 480
+    width: 1920
+    height: 1080
     visible: true
     title: qsTr("Waste Management")
+    visibility: Qt.WindowFullScreen
     Rectangle {
         width: Constants.width
         height: Constants.height
-        color: "#dae4f0"
         border.width: 0
+        color: "white"
+
+        Rectangle {
+            width: 1920
+            height: 1080
+            border.width: 0
+            color: "#ccf5ff"
+        }
+
+        Button {
+            id: iconImport
+            x: 70
+            y: 30
+            icon.name: "import"
+            icon.source: "assets/icons/baseline_download_black_24dp.png"
+            icon.width: 50
+            icon.height: 50
+            icon.color: "#3388ea"
+            background: Rectangle {
+                width: 100
+                height: 100
+                radius: myRoundButton.radius
+                color: "#0000ffff"
+            }
+        }
 
         Text {
             id: text1
-            x: 70
+            x: 150
             y: 30
             width: 498
             height: 48
             color: "#222222"
-            text: qsTr("Thông tin lượt cân")
+            text: qsTr("Thông tin nhập phế liệu")
             font.pixelSize: 41
             font.styleName: "Bold"
             font.family: "Arial"
@@ -61,12 +87,12 @@ Window {
 
                 Text {
                     id: text2
-                    x: 22
-                    y: 10
-                    width: 287
+                    x: 65
+                    y: 5
+                    width: 200
                     height: 70
-                    text: "Nhân viên phụ trách cân đầu vào"
-                    font.pixelSize: 27
+                    text: "Nhân viên cân đầu vào"
+                    font.pixelSize: 32
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
@@ -86,6 +112,7 @@ Window {
                 radius: 20
                 border.color: "#3388ea"
                 border.width: 2
+                property bool isChoose: false
 
                 TextInput {
                     id: textInput
@@ -93,8 +120,15 @@ Window {
                     y: 28
                     width: 478
                     height: 35
-                    text: qsTr("|")
+                    text: qsTr("")
                     font.pixelSize: 26
+                    focus: true
+                    maximumLength: 50
+                    onFocusChanged: {
+                    }
+                    onEditingFinished: {
+                        textInput1.focus = true
+                    }
                 }
             }
 
@@ -111,11 +145,11 @@ Window {
                 Text {
                     id: text3
                     x: 22
-                    y: 10
+                    y: 5
                     width: 287
                     height: 70
-                    text: "Nhân viên phụ trách Tập kết phế liệu"
-                    font.pixelSize: 27
+                    text: "Nhân viên tập kết phế liệu"
+                    font.pixelSize: 30
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
@@ -138,13 +172,17 @@ Window {
                 border.width: 2
                 antialiasing: true
                 TextInput {
-                    id: textInput1
+                    id: textInput3
                     x: 23
                     y: 28
                     width: 478
                     height: 35
                     text: qsTr("")
                     font.pixelSize: 26
+                    onEditingFinished: {
+                        textInput4.focus = true
+                    }
+
                 }
             }
 
@@ -159,6 +197,17 @@ Window {
                 border.color: "#ebebeb"
                 border.width: 2
                 antialiasing: true
+                TextInput {
+                    id: textInput4
+                    x: 23
+                    y: 28
+                    width: 478
+                    height: 35
+                    text: qsTr("")
+                    font.pixelSize: 26
+                    maximumLength: 50
+                    onEditingFinished: textInput5.focus = true
+                }
             }
 
             Rectangle {
@@ -286,6 +335,17 @@ Window {
                 border.color: "#ebebeb"
                 border.width: 2
                 antialiasing: true
+                TextInput {
+                    id: textInput1
+                    x: 23
+                    y: 28
+                    width: 478
+                    height: 35
+                    text: qsTr("")
+                    font.pixelSize: 26
+                    maximumLength: 50
+                    onEditingFinished: textInput2.focus = true
+                }
             }
 
             Rectangle {
@@ -299,6 +359,17 @@ Window {
                 border.color: "#ebebeb"
                 border.width: 2
                 antialiasing: true
+                TextInput {
+                    id: textInput2
+                    x: 23
+                    y: 28
+                    width: 478
+                    height: 35
+                    text: qsTr("")
+                    font.pixelSize: 26
+                    maximumLength: 50
+                    onEditingFinished: textInput3.focus = true
+                }
             }
 
             Rectangle {
@@ -312,6 +383,17 @@ Window {
                 border.color: "#ebebeb"
                 border.width: 2
                 antialiasing: true
+                TextInput {
+                    id: textInput5
+                    x: 23
+                    y: 28
+                    width: 478
+                    height: 35
+                    text: qsTr("")
+                    font.pixelSize: 26
+                    maximumLength: 50
+                    onEditingFinished: textInput6.focus = true
+                }
             }
 
             Rectangle {
@@ -344,6 +426,17 @@ Window {
                 border.color: "#ebebeb"
                 border.width: 2
                 antialiasing: true
+                TextInput {
+                    id: textInput6
+                    x: 23
+                    y: 28
+                    width: 478
+                    height: 35
+                    text: qsTr("")
+                    font.pixelSize: 26
+                    maximumLength: 50
+                    onEditingFinished: textInput7.focus = true
+                }
             }
 
             Rectangle {
@@ -424,6 +517,17 @@ Window {
                 border.color: "#ebebeb"
                 border.width: 2
                 antialiasing: true
+                TextInput {
+                    id: textInput7
+                    x: 23
+                    y: 28
+                    width: 478
+                    height: 35
+                    text: qsTr("")
+                    font.pixelSize: 26
+                    maximumLength: 50
+                    onEditingFinished: textInput8.focus = true
+                }
             }
         }
 
@@ -577,6 +681,15 @@ Window {
             clip: true
         }
 
+        Rectangle {
+            id: rectangle25
+            x: 1240
+            y: 850
+            width: 100
+            height: 50
+            color: "#4a8cd7"
+        }
+
         Button {
             id: button
             x: 1240
@@ -587,26 +700,25 @@ Window {
             font.pointSize: 22
             display: AbstractButton.TextOnly
         }
-//        Button {
-//            id: button1
-//            x: 1597
-//            y: 850
-//            width: 223
-//            height: 90
-//            opacity: 1
-//            text: qsTr("Hủy")
-//            spacing: 6
-//            focusPolicy: Qt.ClickFocus
-//            hoverEnabled: true
-//            enabled: true
-//            highlighted: false
-//            flat: false
-//            font.pointSize: 22
-//            checked: false
-//            checkable: false
-//            display: AbstractButton.TextOnly
-//        }
-
+        Button {
+            id: button1
+            x: 1597
+            y: 850
+            width: 223
+            height: 90
+            opacity: 1
+            text: qsTr("Hủy")
+            spacing: 6
+            focusPolicy: Qt.ClickFocus
+            hoverEnabled: true
+            enabled: true
+            highlighted: false
+            flat: false
+            font.pointSize: 22
+            checked: false
+            checkable: false
+            display: AbstractButton.TextOnly
+        }
 
     }
 
