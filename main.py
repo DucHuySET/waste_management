@@ -1,11 +1,13 @@
 # This Python file uses the following encoding: utf-8
 import sys
-from pathlib import Path
-from PySide2.QtQml import QQmlApplicationEngine
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QFont
+from PyQt5.QtCore import Qt, QLine, QRect
+from PyQt5.QtGui import QFont, QIcon
+
+from ui.screen.import_screen import *
+from ui.screen.export_screen import *
+from ui.base_widget.utils_widget import *
 
 # from pathlib import Path
 
@@ -61,6 +63,7 @@ class MainWindow(QMainWindow):
             padding: 12px;
             border-radius: 20px;
         }}''')
+        button_exportScr.clicked.connect(self.goToExportScr)
         row.addWidget(button_exportScr)
 
         # # creating label
@@ -78,28 +81,24 @@ class MainWindow(QMainWindow):
         self.showMaximized()
     def goToImportScr(self):
         widget_stack.setCurrentWidget(import_screen)
-
-class Import_screen(QMainWindow):
-    def __init__(self):
-        super(Import_screen, self).__init__()
-        loadUi("main.ui", self)
-        # engine = QQmlApplicationEngine()
-        # qml_file = Path(__file__).resolve().parent / "import_screen.qml"
-        # engine.load(str(qml_file))
-        # if not engine.rootObjects():
-        #     sys.exit(-1)
-        # sys.exit(app.exec_())
+    def goToExportScr(self):
+        widget_stack.setCurrentWidget(export_screen)
 
 if __name__ == "__main__":
     # create pyqt5 app
     app = QApplication(sys.argv)
     widget_stack = QStackedWidget()
+    widget_stack.setWindowTitle('Waste Management')
 
     mainWindow = MainWindow()
     import_screen = Import_screen()
+    export_screen = ExportScreen()
+
+
 
     widget_stack.addWidget(mainWindow)
     widget_stack.addWidget(import_screen)
+    widget_stack.addWidget(export_screen)
 
     widget_stack.showMaximized()
     widget_stack.show()
