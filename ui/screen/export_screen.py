@@ -35,7 +35,7 @@ class ExportScreen (QMainWindow):
         input_Field.setFixedSize(1100,900)
         input_Field.setStyleSheet(f'''
         QWidget {{
-            background-color: white;
+            background-color: #eaebe8;
             border: 2px solid #3399ff;
             border-radius: 20px
         }}''')
@@ -45,7 +45,7 @@ class ExportScreen (QMainWindow):
         recordField.setObjectName("recordField")
         recordField.setStyleSheet(f'''
         QWidget {{
-            background-color: white;
+            background-color: #eaebe8;
             border: 2px solid #3399ff;
             border-radius: 20px
         }}''')
@@ -63,38 +63,38 @@ class ExportScreen (QMainWindow):
         input_Field.setLayout(column_Input)
 
         row1 = QHBoxLayout()
-        row1.setContentsMargins(0,0,0,0)
+        # row1.setContentsMargins(0,0,0,0)
         # row1.setAlignment(Qt.AlignLeft)
-        row1.addWidget(buildCardItem(700, 100, 'Lần cân'))
-        row1.addWidget(buildInputForm(500, 70))
+        row1.addWidget(buildCardItem(700, 80, 'Lần cân'))
+        row1.addWidget(buildInputForm(500, 80))
         column_Input.addLayout(row1)
 
         row2 = QHBoxLayout()
         row2.setContentsMargins(0,0,0,0)
         # row1.setAlignment(Qt.AlignLeft)
-        row2.addWidget(buildCardItem(700, 100, 'Thùng bì'))
-        row2.addWidget(buildInputForm(500, 70))
+        row2.addWidget(buildCardItem(700, 80, 'Thùng bì'))
+        row2.addWidget(buildInputForm(500, 80))
         column_Input.addLayout(row2)
         
         row3 = QHBoxLayout()
         row3.setContentsMargins(0,0,0,0)
         # row1.setAlignment(Qt.AlignLeft)
-        row3.addWidget(buildCardItem(700, 100, 'Chủng loại phế liệu'))
-        row3.addWidget(buildInputForm(500, 70))
+        row3.addWidget(buildCardItem(700, 80, 'Chủng loại phế liệu'))
+        row3.addWidget(buildInputForm(500, 80))
         column_Input.addLayout(row3)
 
         row4 = QHBoxLayout()
         row4.setContentsMargins(0,0,0,0)
         # row1.setAlignment(Qt.AlignLeft)
-        row4.addWidget(buildCardItem(700, 100, 'Nhân viên cân'))
-        row4.addWidget(buildInputForm(500, 70))
+        row4.addWidget(buildCardItem(700, 80, 'Nhân viên cân'))
+        row4.addWidget(buildInputForm(500, 80))
         column_Input.addLayout(row4)
 
         row5 = QHBoxLayout()
         row5.setContentsMargins(0,0,0,0)
         # row1.setAlignment(Qt.AlignLeft)
-        row5.addWidget(buildCardItem(700, 100, 'Nhân viên cân'))
-        row5.addWidget(buildInputForm(500, 70))
+        row5.addWidget(buildCardItem(700, 80, 'Nhân viên cân'))
+        row5.addWidget(buildInputForm(500, 80))
         column_Input.addLayout(row5)
 
         column_record = QVBoxLayout()
@@ -102,10 +102,9 @@ class ExportScreen (QMainWindow):
 
         back_button = QPushButton()
         back_button.setText('Quay lại')
-        # back_button.clicked.connect(lambda: )
+        back_button.clicked.connect()
         column_record.addWidget(back_button)
 
         widget = QWidget()
         widget.setLayout(column01)
         self.setCentralWidget(widget)
-        

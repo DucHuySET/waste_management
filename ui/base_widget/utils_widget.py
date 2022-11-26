@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
 import sys
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt, QLine, QRect
+from PyQt5.QtCore import Qt, QLine, QRect, QEvent
 from PyQt5.QtGui import QFont, QIcon
 
 class buildCardBase(QWidget):
@@ -25,9 +25,10 @@ class buildDivider(QLabel):
     def __init__(self):
         super().__init__()
         self.setFixedHeight(2)
+        self.setObjectName('divider')
         self.setText('')
         self.setStyleSheet(f'''
-        QWidget {{
+        QWidget#divider {{
             background-color: white;
             border: 2px solid #3399ff;
         }}''')
@@ -47,19 +48,19 @@ class buildCardItem(QWidget):
             background-color: white;
             border: 2px solid #3399ff;
             border-radius: 10px
+            
         }}''')
         self.components()
     
     def components(self):
         column = QVBoxLayout()
-        column.setAlignment(Qt.AlignCenter)
-
+        column.setAlignment(Qt.AlignLeft)
         label = QLabel(self.text)
         label.setFont(QFont('Arial', 20))
         column.addWidget(label)
         self.setLayout(column)
         self.setFixedSize(self.width, self.height)
-
+        
 class buildInputForm(QWidget):
     def __init__(self, width, height):
         super().__init__()
@@ -72,12 +73,18 @@ class buildInputForm(QWidget):
         }}''')
         self.components()
     def components(self):
-        column = QVBoxLayout()
-        column.setAlignment(Qt.AlignVCenter)
+        self.column = QVBoxLayout()
+        self.column.setAlignment(Qt.AlignVCenter)
 
-        input = QTextEdit()
-        input.setFont(QFont('Arial', 15))
-        column.addWidget(input)
+        self.input = QLineEdit()
+        self.input.setFont(QFont('Arial', 20))
+        self.column.addWidget(self.input)
 
-        self.setLayout(column)
+        self.setLayout(self.column)
+    def event(self, event):
+        if event.type() == QEvent.KeyPress:
+            if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+                self.focusNextPrevChild(True)
+        return super().event(event)
+
 
