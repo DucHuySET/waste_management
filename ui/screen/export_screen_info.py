@@ -77,6 +77,8 @@ class ExportScreenInfo (QMainWindow):
         self.row1.addWidget(buildCardItem(700, 80, 'Lượt cân'))
         self.input1 = buildInputForm(500, 80)
         self.input1.input.setText("1")
+        self.input1.input.clearFocus()
+        self.input1.focusNextPrevChild(True)
         self.input1.input.textChanged.connect(self.setTurn)
         self.row1.addWidget(self.input1)
         self.column_Input.addLayout(self.row1)
@@ -99,6 +101,7 @@ class ExportScreenInfo (QMainWindow):
         self.row4.addWidget(buildCardItem(700, 80, 'Xác nhận thông tin cân'))
         self.input4 = buildInputForm(500, 80)
         self.input4.input.textChanged.connect(self.setTurnInfo)
+        self.input4.input.setMaxLength(20)
         self.row4.addWidget(self.input4)
         self.column_Input.addLayout(self.row4)
 
@@ -126,6 +129,7 @@ class ExportScreenInfo (QMainWindow):
 
         self.turn = QLabel('Lượt cân: ')
         self.turn.setFixedHeight(100)
+        self.setTurn()
         self.turn.setStyleSheet(f'''
         QLabel {{
             background-color: #474747;
@@ -215,13 +219,13 @@ class ExportScreenInfo (QMainWindow):
         self.currentTurn = self.input1.input.text()
         self.clearField()
         self.input1.input.setText(str(int(self.currentTurn)+1))
-        self.input1.input.setFocus()
+        self.input2.input.setFocus()
         print("saved")
     def turnCancel(self):
         self.currentTurn = self.input1.input.text()
         self.clearField()
         self.input1.input.setText(self.currentTurn)
-        self.input1.input.setFocus()
+        self.input2.input.setFocus()
         print("canceled")
     def clearField(self):
         self.input1.input.clear()
