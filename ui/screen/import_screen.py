@@ -1,13 +1,12 @@
 # This Python file uses the following encoding: utf-8
-import sys
+import sqlite3
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt, QLine, QRect
-from PyQt5.QtGui import QFont, QIcon
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
 from ui.base_widget.utils_widget import *
 
 class Import_screen(QMainWindow):
-    
     def __init__(self, stackWidget, mainWindow):
         self.stackWidget = stackWidget
         self.mainWindow = mainWindow
@@ -17,6 +16,8 @@ class Import_screen(QMainWindow):
         self.setStyleSheet("background-color: #1d212d")
         self.uiComponents()
         self.show()
+        self.importConnect = sqlite3.connect('database\import.db')
+        self.importCursor = self.importConnect.cursor()
     def uiComponents(self):
         self.column01 = QVBoxLayout()
         self.column01.setContentsMargins(20,20,20,20)
@@ -215,6 +216,7 @@ class Import_screen(QMainWindow):
 
         # self.setStaffName()
     def goToMainScr(self):
+        self.importConnect.close()
         self.stackWidget.setCurrentWidget(self.mainWindow)
     def setStaffNameMeas(self):
         self.staffNameMeas.setText('Thông tin nhân viên cân: ' + self.input1.input.text())
